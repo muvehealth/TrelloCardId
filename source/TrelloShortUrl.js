@@ -54,7 +54,7 @@
         this.button = document.createElement("a");
         this.button.className = "button-link js-add-trello-short-url";
         this.button.setAttribute("id", "trello-short-url-button");
-        this.button.setAttribute("title", "Copy the short URL for this card to the clipboad");
+        this.button.setAttribute("title", "Copy the id for this card to the clipboad");
         this.button.dataset.cardId = cardId;
 
         icon = document.createElement("span");
@@ -78,14 +78,14 @@
 
         var t = document.createElement('input');
         t.setAttribute('type', 'text');
-        t.value = 'https://trello.com/c/' + cardId;
+        t.value = cardId;
         this.appendChild(t);
         t.focus();
         t.select();
         document.execCommand('Copy', false, null);
         t.remove();
 
-        setTimeout(function() { label.innerHTML = " Short URL"; }, 750);
+        setTimeout(function() { label.innerHTML = " Card ID"; }, 750);
       };
 
       return TrelloShortUrl;
