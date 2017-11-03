@@ -1,17 +1,17 @@
 (function() {
 
   (function() {
-    var TrelloShortUrl;
+    var TrelloCardId;
 
-    TrelloShortUrl = (function() {
-      function TrelloShortUrl(config) {
+    TrelloCardId = (function() {
+      function TrelloCardId(config) {
         this.config = config;
         this.actionSelectorPrimary  = ".window-sidebar .other-actions .u-clearfix";
         this.actionSelectorFallback = ".window-sidebar .window-module:first-child .u-clearfix";
         this.listen();
       }
 
-      TrelloShortUrl.prototype.listen = function() {
+      TrelloCardId.prototype.listen = function() {
         return window.addEventListener("message", (function(_this) {
           return function(event) {
             if (event.data.trelloUrlChanged === null) {
@@ -22,7 +22,7 @@
         })(this));
       };
 
-      TrelloShortUrl.prototype.addButtonIfOnCard = function() {
+      TrelloCardId.prototype.addButtonIfOnCard = function() {
         var c, cardId, _, _ref;
         _ref = window.location.pathname.split("/");
         c = _ref[1];
@@ -35,8 +35,8 @@
         return true;
       };
 
-      TrelloShortUrl.prototype.buildButton = function(cardId) {
-        var oldButton = document.getElementById('trello-short-url-button');
+      TrelloCardId.prototype.buildButton = function(cardId) {
+        var oldButton = document.getElementById('trello-card-id-button');
         if (oldButton !== null) {
           oldButton.remove();
         }
@@ -52,8 +52,8 @@
         }
 
         this.button = document.createElement("a");
-        this.button.className = "button-link js-add-trello-short-url";
-        this.button.setAttribute("id", "trello-short-url-button");
+        this.button.className = "button-link js-add-trello-card-id";
+        this.button.setAttribute("id", "trello-card-id-button");
         this.button.setAttribute("title", "Copy the id for this card to the clipboad");
         this.button.dataset.cardId = cardId;
 
@@ -64,13 +64,13 @@
 
         label = document.createElement("span");
         label.className = "button-label";
-        label.innerHTML = " Short URL";
+        label.innerHTML = " Card ID";
         this.button.appendChild(label);
 
         return actions.insertBefore(this.button, actions.children[0]);
       };
 
-      TrelloShortUrl.prototype.buttonClick = function(event) {
+      TrelloCardId.prototype.buttonClick = function(event) {
         var label = this.querySelector("span.button-label");
         label.innerHTML = " Copied...";
 
@@ -88,10 +88,10 @@
         setTimeout(function() { label.innerHTML = " Card ID"; }, 750);
       };
 
-      return TrelloShortUrl;
+      return TrelloCardId;
     })();
 
-    return new TrelloShortUrl({});
+    return new TrelloCardId({});
   })();
 
 }).call(this);
