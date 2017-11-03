@@ -3,7 +3,7 @@
 
   "name": "Trello Card ID",
   "description": "This extension provides a button on a Trello card to copy the card ID to the clipboard.",
-  "version": "0.1",
+  "version": "0.2",
 
   "content_scripts" : [
     {
